@@ -8,6 +8,8 @@ Article title, and a second column sith the number of views of the corresponding
 article. Sorted in descending order.
 
 **Example output: NOT THE ACTUAL REPORT**
+
+
 |                      Title                    |  Views  |
 |:----------------------------------------------|:-------:|
 |Princess Shellfish Marries Prince Handsome     |  1201   |
@@ -19,6 +21,8 @@ for all articles written by that author. Sorted in descending order and limited
 to 5 results for performance. 
 
 **Example output: NOT THE ACTUAL REPORT**
+
+
 |          Name          |  Views  |
 |:-----------------------|:-------:|
 |Ursula La Multa         | 2304    |
@@ -31,6 +35,8 @@ of date(Format: YYYY-MM-DD) and percent of total request that return 404 NOT FOU
 for that day, if this percentage was greater than 1%.
 
 **Example output: NOT THE ACTUAL REPORT**
+
+
 |          Date          |  Error %  |
 |:-----------------------|:---------:|
 |2016-07-29              | 2.5%      |
