@@ -78,17 +78,24 @@ def print_days_with_errors():
     print(" -" * 12)
 
 
+def print_report(result_list, header_tupple):
+    '''
+    print method for a list that contains query results.
+    '''
+    print(" -" * 22)
+    print("|{:^32}|{:^8} |".format(header_tupple[0], header_tupple[1]))
+    print(" -" * 22)
+    for item in result_list:
+        print("|{:<32}|{:^8} |".format(item[0], item[1]))
+    print(" -" * 22)
+
+
 def print_popular_articles():
     '''
     Tabulated print out of three most popular articles.
     '''
     popular_articles_list = get_most_popular_articles()
-    print(" -" * 22)
-    print("|{:^32}|{:^8} |".format("Article title", "Views"))
-    print(" -" * 22)
-    for item in popular_articles_list:
-        print("|{:<32}|{:^8} |".format(item[0], item[1]))
-    print(" -" * 22)
+    print_report(popular_articles_list, ("Article title", "Views"))
 
 
 def print_popular_authors():
@@ -96,12 +103,7 @@ def print_popular_authors():
     Tabulated print out popular authors.
     '''
     popular_authors_list = get_popular_authors()
-    print(" -" * 22)
-    print("|{:^32}|{:^8} |".format("Authors Name", "Views"))
-    print(" -" * 22)
-    for item in popular_authors_list:
-        print("|{:<32}|{:^8} |".format(item[0], item[1]))
-    print(" -" * 22)
+    print_report(popular_authors_list, ("Authors Name", "Views"))
 
 
 if __name__ == '__main__':
