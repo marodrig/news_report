@@ -6,7 +6,7 @@ This is a python script that creates three reports for a Postgre database.
 
 ### Three most popular articles
 
-Prints a table containing a column witht the Article title, and a second column sith the number of views of the corresponding article. Sorted in descending order.
+Prints a table containing a column witht the Article title, and a second column showing the number of views of the corresponding article. Sorted in descending order.
 
 #### Example Output for Three Most Popular articles: NOT THE ACTUAL REPORT
 
@@ -68,7 +68,7 @@ CREATE VIEW percent_error_view AS
 
 ### Postgre
 
-You need to postgre running in a virtual machine or your machine in order to create the database and interact with it using Python.
+You need to postgre running in a virtual machine or your machine in order to create the database and interact with it using Python.  A database must exists and the database name must be _news_.
 
 ### Python
 
@@ -83,16 +83,36 @@ You can download the necessary file
 
 Once you have postgre installed, and you have downloaded and unzipped the newsdata.sql file you will need to type the following commands:
 
-    1. Create the postgre database using the newsdata.sql file.
+### Create the postgre database using the newsdata.sql file
+
+Once the newsdata.sql file has been downloaded and unzipped, and postgre has been installed in your machine or the virtual machine you are using you can create the database named _news_ by typing the following in your command line:
 
 ``` cmd
 psql -d news -f newsdata.sql
 ```
 
-    2. Create views using the create_views.sql from this repo.
+### Create views using the create_views.sql from this repo
+
+In favor of ease-of-use and time saving we have included the SQL code need to create the views in a file name create_views.sql.  This code checks for existing views with the same name as the ones that will be created, and drops them if this is the case. This is done in order to avoid any error messages while creating the views.  The user can run the code by typing the following command from the command line:
 
 ```cmd
 psql -d news -f create_views.sql
 ```
+
+### Executing the log analysis report
+
+In order to execute the report the user needs to type:
+
+```cmd
+python newsdata_report.py
+```
+
+This will print out the report to the command line. If the user wants the output to be in a text file, the user can type the following command:
+
+```cmd
+python newsdata_report.py > {my_output_file}.txt
+```
+
+The output for the report can be found in report_result.txt
 
 ## License

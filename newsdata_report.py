@@ -6,17 +6,17 @@ import psycopg2
 DBNAME = "news"
 
 FAVORITE_ARTICLES_QRY = '''SELECT title, num_views
-                            FROM popular_articles_view
-                            ORDER BY num_views DESC
-                            LIMIT 3;
+                           FROM popular_articles_view
+                           ORDER BY num_views DESC
+                           LIMIT 3;
                         '''
 
-FAVORITE_AUTHORS_QRY = '''SELECT authors.name, sum(popular_articles_view.num_views) as views
-                            FROM popular_articles_view, authors
-                            WHERE authors.id = popular_articles_view.author
-                            GROUP BY authors.name
-                            ORDER BY views DESC
-                            LIMIT 5;
+FAVORITE_AUTHORS_QRY = '''SELECT authors.name, sum(popular_articles_view.num_views) AS views
+                          FROM popular_articles_view, authors
+                          WHERE authors.id = popular_articles_view.author
+                          GROUP BY authors.name
+                          ORDER BY views DESC
+                          LIMIT 5;
                       '''
 
 DAYS_WITH_ERROR_QRY = '''SELECT log_time, error_percent
