@@ -28,7 +28,12 @@ DAYS_WITH_ERROR_QRY = '''SELECT log_time, error_percent
 
 def connect():
     """:returns : Connection object to the database specified in DBNAME"""
-    return psycopg2.connect(database=DBNAME)
+    try:
+        conn = psycopg2.connect(database=DBNAME)
+        cur = conn.cursor()
+        return conn, cur
+    except psycopg2.Error as e:
+        raise e
 
 
 def get_days_with_errors():
@@ -50,10 +55,14 @@ def get_qry_result(qry):
     """
     :param qry: string of the sql query to be executed
 
-    :returns tuple_list: list of tuples with the result of the query specified by the string qry 
+    :returns tuple_list: list of tuples with the result of the query specified
+    by the string qry
     """
-    conn = connect()
-    cur = conn.cursor()
+    try:
+        conn, cur = connect()
+    except psycopg2.Error as e:
+        print "Error opening database. {}".format(e.stackTrace)
+        exit(1)
     cur.execute(qry)
     result_list = cur.fetchall()
     conn.close()
@@ -61,7 +70,8 @@ def get_qry_result(qry):
 
 
 def print_days_with_errors():
-    """Prints table with date (YYYY-MM-DD) and error percentage, if error percentage is greater than 1%."""
+    """Prints table with date (YYYY-MM-DD) and error percentage, if error
+    percentage is greater than 1%."""
     days_with_errors_list = get_days_with_errors()
     print(" -" * 12)
     print("|{:^12}|{:^8} |".format("Date", "Error %"))
